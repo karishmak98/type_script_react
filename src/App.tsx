@@ -14,8 +14,9 @@ function App() {
     const extractedData=data as {
    name:string, age:string
     }
-    console.log(extractedData)
+   
     customForm.current?.clear();
+     console.log(extractedData)
   }
 
   return (
