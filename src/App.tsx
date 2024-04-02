@@ -1,34 +1,47 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+
 import './App.css'
+// import Button from './components/Button'
+// import Container from './components/Container';
+import { useRef } from 'react';
+import Form,{type FormHandle} from './components/UI/Form';
+import Input from './components/UI/Input';
+
 
 function App() {
-  const [count, setCount] = useState(0)
+  const customForm=useRef<FormHandle>(null)
+  // const input=useRef<HTMLInputElement>(null);
+  function handleSave(data:unknown){
+    const extractedData=data as {
+   name:string, age:string
+    }
+    console.log(extractedData)
+    customForm.current?.clear();
+  }
 
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    <main>
+
+      {/* <Input label="name" id="name" type="text"/>
+      <Input label="number" id="name" type="number"/> */}
+   {/* <p>
+    <Button target='' className='button' >
+    A Button
+    </Button>
+   </p>
+   <p>
+    <Button className='anchor' 
+    href='https://google.com' >
+    A Link
+    </Button>
+   </p> */}
+   {/* <Container  as={Button} onClick={()=>{}}>Click Me</Container> */}
+
+   {/* <Input label='Test' id='test' ref={input}/> */}
+   <Form onSave={handleSave} ref={customForm}>
+   <Input type="text"  id="name" label="Name"/>
+   <Input type="number"  id="age" label="Age"/>
+   </Form>
+    </main>
   )
 }
 
